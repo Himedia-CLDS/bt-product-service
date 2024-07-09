@@ -4,15 +4,15 @@ services:
 
   logstash:
     build:
-      context: "${PWD}/logstash"
+      context: "./logstash"
       dockerfile: Dockerfile
     volumes:
       - type: bind
-        source: "${PWD}/logstash/config/logstash.yml"
+        source: "./logstash/config/logstash.yml"
         target: /usr/share/logstash/config/logstash.yml
         read_only: true
       - type: bind
-        source: "${PWD}/logstash/pipeline"
+        source: "./logstash/pipeline"
         target: /usr/share/logstash/pipeline
         read_only: true
       - logs:/.logs/
@@ -30,7 +30,7 @@ services:
 
   spring-api-server:
     build:
-      context: "${PWD}/spring"
+      context: "./spring"
       dockerfile: Dockerfile
     volumes:
       - logs:/.logs
