@@ -1,0 +1,58 @@
+version: '3.2'
+
+services:
+
+  logstash:
+    build:
+      context: "${PWD}/logstash"
+      dockerfile: Dockerfile
+    volumes:
+      - type: bind
+        source: "${PWD}/logstash/config/logstash.yml"
+        target: /usr/share/logstash/config/logstash.yml
+        read_only: true
+      - type: bind
+        source: "${PWD}/logstash/pipeline"
+        target: /usr/share/logstash/pipeline
+        read_only: true
+      - logs:/.logs/
+    ports:
+      - "5001:5001/tcp"
+      - "5001:5001/udp"
+      - "9600:9600"
+    networks:
+      - elk
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+      OPENSEARCH_HOST: ${OPENSEARCH_HOST}
+      OPENSEARCH_USER: ${OPENSEARCH_USER}
+      OPENSEARCH_PASS: ${OPENSEARCH_PASS}
+
+  spring-api-server:
+    build:
+      context: "${PWD}/spring"
+      dockerfile: Dockerfile
+    volumes:
+      - logs:/.logs
+    ports:
+      - "8080:8080"
+    networks:
+      - elk
+    environment:
+      SPRING_DATASOURCE_URL: ${MYSQL_DATABASE}
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_SHOW_SQL: "true"
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQLDialect
+    depends_on:
+      - logstash
+
+volumes:
+  logs:
+    driver: local
+
+networks:
+  elk:
+    driver: bridge

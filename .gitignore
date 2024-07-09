@@ -1,0 +1,11 @@
+.idea/
+.vscode/
+spring/.gradle/
+spring/build/
+spring/gradle/
+spring/.logs/
+.logs/
+.DS_Store
+application.yml
+.env
+
