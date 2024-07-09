@@ -44,9 +44,13 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.SSH_HOST }} 'mkdir -p ~/app'
 
-      - name: Copy files to EC2
+      - name: Copy project files to EC2
         run: |
-          scp -r -o StrictHostKeyChecking=no * ec2-user@${{ secrets.SSH_HOST }}:~/app
+          scp -r -o StrictHostKeyChecking=no $(ls | grep -v ".env") ec2-user@${{ secrets.SSH_HOST }}:~/app/
+
+      - name: Copy .env file to EC2
+        run: |
+          scp -o StrictHostKeyChecking=no .env ec2-user@${{ secrets.SSH_HOST }}:~/app/
 
       - name: Execute docker-compose up
         run: |
