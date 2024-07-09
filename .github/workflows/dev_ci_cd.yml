@@ -42,7 +42,7 @@ jobs:
 
       - name: Copy files to EC2
         run: |
-          scp -r -o StrictHostKeyChecking=no . ec2-user@${{ secrets.SSH_HOST }}:~/app
+          scp -r -o StrictHostKeyChecking=no * ec2-user@${{ secrets.SSH_HOST }}:~/app
 
       - name: Execute docker-compose up
         run: |
