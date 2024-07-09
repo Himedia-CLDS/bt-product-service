@@ -23,9 +23,9 @@ jobs:
           echo "OPENSEARCH_PASS=${{secrets.OPENSEARCH_PASS}}" >> .env
           cat .env
 
-      - name: Log in to Docker Hub
-        run: |
-          echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+#      - name: Log in to Docker Hub
+#        run: |
+#          echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
 
 #      - name: Build, tag, and push Docker image to Docker Hub
 #        env:
