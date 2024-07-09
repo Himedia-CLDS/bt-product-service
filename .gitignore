@@ -5,6 +5,5 @@ spring/build/
 spring/.logs/
 .logs/
 .DS_Store
-application.yml
 .env
 

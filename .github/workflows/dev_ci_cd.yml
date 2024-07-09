@@ -24,3 +24,17 @@ jobs:
         run: |
           docker build -t $IMAGE_NAME:$IMAGE_TAG .
           docker push $IMAGE_NAME:$IMAGE_TAG
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Deploy to AWS EC2
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} <<EOF
+            docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/my-app:latest
+            docker stop my-app || true
+            docker rm my-app || true
+            docker run -d --name my-app -p 80:8080 ${{ secrets.DOCKER_HUB_USERNAME }}/my-app:latest
+          EOF
