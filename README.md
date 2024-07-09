@@ -10,23 +10,11 @@ OPENSEARCH_HOST={오픈서치엔드포인트}
 OPENSEARCH_USER={유저네임}
 OPENSEARCH_PASS={패스워드}
 ```
-2. /spring/src/main/resources/application.yml 추가 및 환경변수 설정
+2. /spring/src/main/resources/application.yml 환경변수 설정(Docker로빌드하지 않을경우만)
 ```shell
-spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: ${MYSQL_DATABASE}
-    username: ${MYSQL_USER}
-    password: ${MYSQL_PASSWORD}
-
-  jpa:
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        show_sql: true
-        format_sql: true
-        dialect: org.hibernate.dialect.MySQLDialect
+export MYSQL_DATABASE={DB주소}
+export MYSQL_USER={유저네임}
+export MYSQL_PASSWORD={패스워드}
 ```
 3. docker-composse up 실행
 ```shell
