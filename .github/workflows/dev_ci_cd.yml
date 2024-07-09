@@ -15,12 +15,12 @@ jobs:
 
       - name: Setting .env
         run: |
-          echo "MYSQL_DATABASE=${{secret.MYSQL_DATABASE}}" >> .env
-          echo "MYSQL_USER=${{secret.MYSQL_USER}}" >> .env
-          echo "MYSQL_PASSWORD=${{secret.MYSQL_PASSWORD}}" >> .env
-          echo "OPENSEARCH_HOST=${{secret.OPENSEARCH_HOST}}" >> .env
-          echo "OPENSEARCH_USER=${{secret.OPENSEARCH_USER}}" >> .env
-          echo "OPENSEARCH_PASS=${{secret.OPENSEARCH_PASS}}" >> .env
+          echo "MYSQL_DATABASE=${{secrets.MYSQL_DATABASE}}" >> .env
+          echo "MYSQL_USER=${{secrets.MYSQL_USER}}" >> .env
+          echo "MYSQL_PASSWORD=${{secrets.MYSQL_PASSWORD}}" >> .env
+          echo "OPENSEARCH_HOST=${{secrets.OPENSEARCH_HOST}}" >> .env
+          echo "OPENSEARCH_USER=${{secrets.OPENSEARCH_USER}}" >> .env
+          echo "OPENSEARCH_PASS=${{secrets.OPENSEARCH_PASS}}" >> .env
           cat .env
 
       - name: Log in to Docker Hub
