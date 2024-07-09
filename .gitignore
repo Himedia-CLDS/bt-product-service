@@ -2,7 +2,6 @@
 .vscode/
 spring/.gradle/
 spring/build/
-spring/gradle/
 spring/.logs/
 .logs/
 .DS_Store
