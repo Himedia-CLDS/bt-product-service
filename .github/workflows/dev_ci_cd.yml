@@ -36,9 +36,11 @@ jobs:
 #          docker push $IMAGE_NAME:$IMAGE_TAG
 
       - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.5.3
+        uses: appleboy/ssh-action@v0.1.6
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.AWS_SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Deploy to AWS EC2
         run: |
