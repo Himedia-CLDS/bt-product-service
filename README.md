@@ -27,6 +27,8 @@ $ docker-compose up
    | GET | http://localhost:8080/v1/api/products                  | 전체 위스키정보를 조회   |
    | GET | http://localhost:8080/v1/api/products/{id}             | 특정 위스키정보를 조회   |
    | GET | http://localhost:8080/v1/api/products?search={keyword} | 키워드로 위스키목록을 조회 |
-5. opensearch 대쉬보드에서 로그파일 조회
-
-   https://search-demo-pub-opensearch-in5swn3ijsqc3uwckywol3ogke.ap-northeast-2.es.amazonaws.com/_dashboards
+5. 대쉬보드에서 로그파일 조회
+   test request api
+6. http://ec2-3-35-214-155.ap-northeast-2.compute.amazonaws.com/v1/api/products/1
+7. kibana dashboard
+   http://ec2-54-180-249-141.ap-northeast-2.compute.amazonaws.com:5601/app/kibana#/home
