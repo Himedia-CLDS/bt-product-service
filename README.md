@@ -40,6 +40,32 @@ export $(grep -v '^#' .env | xargs)
 chmod +x load-env.sh 실행권한 부여
 source ./load-env.sh 환경변수 로드
 
+5. 인스턴스에 logstash 설치후 
+logstash.conf 수정 필요
+sudo vi /etc/logstash/conf.d/logstash.conf
+
+input {
+        file {
+           path => "/log/application.log"
+         start_position => "beginning"
+         sincedb_path => "/dev/null"
+        }
+}
+
+output {
+        elasticsearch {
+                hosts => "http://3.39.169.45:9200"
+                user => "카톡방 공유"
+                password => "카톡방 공유"
+                index => "logstash-apache-access-%{+YYYY.MM.dd}"
+        }
+
+        stdout {
+          id => "logstash"
+          codec => rubydebug
+        }
+}
+
 
 5. api test
 
