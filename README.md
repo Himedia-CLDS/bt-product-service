@@ -6,20 +6,29 @@ MYSQL_DATABASE={DB주소}
 MYSQL_USER={유저네임}
 MYSQL_PASSWORD={패스워드}
 
-OPENSEARCH_HOST={오픈서치엔드포인트}
-OPENSEARCH_USER={유저네임}
-OPENSEARCH_PASS={패스워드}
+
 ```
 2. /spring/src/main/resources/application.yml 환경변수 설정(Docker로빌드하지 않을경우만)
 ```shell
-export MYSQL_DATABASE={DB주소}
-export MYSQL_USER={유저네임}
-export MYSQL_PASSWORD={패스워드}
+프로젝트 spring 디렉토리에서
+nano load-env.sh
 ```
-3. docker-composse up 실행
+
 ```shell
-$ docker-compose up 
+load-env.sh 파일 내용:
+
+Bash
+
+복사
+
+**#!/bin/bash**
+export $(grep -v '^#' .env | xargs)
 ```
+
+chmod +x load-env.sh 실행권한 부여
+source ./load-env.sh 환경변수 로드
+
+
 4. api test
 
    | 메서드 | URL                                                    | 설명             |
