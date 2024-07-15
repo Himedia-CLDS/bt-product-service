@@ -4,10 +4,10 @@
 
     <!-- Rolling File Appender -->
     <appender name="RollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>.logs/application-%d{yyyy-MM-dd}.%i.log</file>
+        <file>/log/application-%d{yyyy-MM-dd}.%i.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!-- 로그 파일 패턴 -->
-            <fileNamePattern>.logs/application-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>/log/application-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <!-- 파일 최대 크기 -->
             <maxFileSize>10MB</maxFileSize>
             <!-- 최대 보관할 기간 -->
