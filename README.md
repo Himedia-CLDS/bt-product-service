@@ -56,15 +56,15 @@ input {
 
 output {
         elasticsearch {
-                hosts => "..."
-                user => "카톡방 공유"
-                password => "카톡방 공유"
-                index => "logstash-apache-access-%{+YYYY.MM.dd}"
+            hosts => "..."
+            user => "카톡방 공유"
+            password => "카톡방 공유"
+            index => "logstash-apache-access-%{+YYYY.MM.dd}"
         }
 
         stdout {
-                id => "logstash"
-                codec => rubydebug
+            id => "logstash"
+            codec => rubydebug
         }
 }
 
