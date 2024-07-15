@@ -12,7 +12,7 @@ MYSQL_PASSWORD={패스워드}
 
 3. spring 디렉토리에서 .env를 만들어주시고
 ```shell
-MYSQL_DATABASE=jdbc:mysql://database-1.cvmakeaksuml.ap-northeast-2.rds.amazonaws.com/bottle
+MYSQL_DATABASE=카톡방 공유
 MYSQL_USER=카톡방 공유
 MYSQL_PASSWORD=카톡방 공유
 SPRING_PROFILES_ACTIVE=prod
@@ -56,7 +56,7 @@ input {
 
 output {
         elasticsearch {
-                hosts => "http://3.39.169.45:9200"
+                hosts => "..."
                 user => "카톡방 공유"
                 password => "카톡방 공유"
                 index => "logstash-apache-access-%{+YYYY.MM.dd}"
