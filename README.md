@@ -44,6 +44,8 @@ source ./load-env.sh 환경변수 로드
 logstash.conf 수정 필요
 sudo vi /etc/logstash/conf.d/logstash.conf
 
+```shell
+
 input {
         file {
            path => "/log/application.log"
@@ -65,6 +67,8 @@ output {
           codec => rubydebug
         }
 }
+
+```
 
 
 5. api test
