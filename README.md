@@ -49,8 +49,8 @@ sudo vi /etc/logstash/conf.d/logstash.conf
 input {
         file {
            path => "/log/application.log"
-         start_position => "beginning"
-         sincedb_path => "/dev/null"
+           start_position => "beginning"
+           sincedb_path => "/dev/null"
         }
 }
 
@@ -63,8 +63,8 @@ output {
         }
 
         stdout {
-          id => "logstash"
-          codec => rubydebug
+                id => "logstash"
+                codec => rubydebug
         }
 }
 
@@ -80,3 +80,6 @@ output {
    | GET | /v1/api/products?search={keyword} | 키워드로 위스키목록을 조회 |
 
 
+6.links
+ElasticSearch = https://3.39.169.45:9200
+kibana = https://3.39.169.45:5601
