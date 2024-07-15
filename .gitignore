@@ -6,4 +6,4 @@ spring/.logs/
 .logs/
 .DS_Store
 .env
-
+.class
