@@ -1,0 +1,22 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+# .pre-commit-config.yaml
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    # rev : hook의 버전
+    rev: v3.4.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: detect-private-key
+# 파이썬 국민 코드 포맷터
+#  - repo: https://github.com/psf/black
+#    rev: 21.9b0
+#    hooks:
+#      - id: black
+#        language_version: python3.8
+# JS에 적용되는 eslint
+#  - repo: https://github.com/pre-commit/mirrors-eslint
+#    rev: v7.32.0
+#    hooks:
+#      - id: eslint
