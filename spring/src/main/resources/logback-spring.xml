@@ -4,16 +4,16 @@
 
     <!-- Rolling File Appender -->
     <appender name="RollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>/log/application-%d{yyyy-MM-dd}.%i.log</file>
+        <file>log/application.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!-- 로그 파일 패턴 -->
-            <fileNamePattern>/log/application-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>log/application-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <!-- 파일 최대 크기 -->
-            <maxFileSize>10MB</maxFileSize>
+            <maxFileSize>100KB</maxFileSize>
             <!-- 최대 보관할 기간 -->
             <maxHistory>30</maxHistory>
         </rollingPolicy>
-        <encoder>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
