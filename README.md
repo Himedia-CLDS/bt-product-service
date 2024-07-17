@@ -1,10 +1,9 @@
 # Installation
 
-1. /.env 파일 추가 및 환경변수 설정
-```shell
-MYSQL_DATABASE={DB주소}
-MYSQL_USER={유저네임}
-MYSQL_PASSWORD={패스워드}
+
+
+
+1. resources 에 key.yml 파일 추가 필요 
 
 
 ```
@@ -85,3 +84,5 @@ output {
 ElasticSearch = https://3.39.169.45:9200
 kibana = https://3.39.169.45:5601
 ```
+
+
