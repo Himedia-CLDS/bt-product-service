@@ -4,7 +4,6 @@ Content-Type: application/json
 Accept: application/json
 
 
-
 ### GET 목록조회
 GET http://localhost:8080/v1/api/products
 Content-Type: application/json

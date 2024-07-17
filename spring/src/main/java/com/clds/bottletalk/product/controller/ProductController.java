@@ -33,6 +33,7 @@ public class ProductController {
     @GetMapping("")
     public List<Product> getAllProducts(@RequestParam(defaultValue = "_id") String sortBy) {
         Sort sort = Sort.by(sortBy).ascending(); // 기본 정렬을 오름차순으로 설정
+
         return productService.findAllProducts(sort);
     }
 
@@ -49,16 +50,15 @@ public class ProductController {
         return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "조회성공", productDTO));
     }
 
+
+//    페이징 없는 전체조회 추후 사용 예정
 //    @GetMapping("/search")
 //    public  ResponseEntity<ResponseDTO> searchProducts(@RequestParam(name = "search", defaultValue = "") String search,
-//                                         @RequestParam(defaultValue = "_id") String sortBy)
-//
+//                                                        @RequestParam(defaultValue = "_id") String sortBy)
 //    {
-//
 //        Sort sort = Sort.by(sortBy).ascending(); //
 //        List<ProductDTO> productDTOList = productService.searchProducts(search,sort);
-//
-//
+
 //        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK,"조회성공",productDTOList));
 //    }
 
@@ -66,7 +66,7 @@ public class ProductController {
     @GetMapping("/search")
     public ResponseEntity<ResponseDTO> getProductListWithPaging(@RequestParam(name = "search") String search,
                                                                 @RequestParam(name = "offset", defaultValue = "1") String offset,
-                                                                @RequestParam(defaultValue = "_id") String sortBy
+                                                                @RequestParam(defaultValue = "kor_name.keyword") String sortBy
     ) {
         Sort sort = Sort.by(sortBy).ascending(); //
         Criteria cri = new Criteria(Integer.valueOf(offset), 5,sort);

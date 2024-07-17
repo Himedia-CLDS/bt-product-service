@@ -1,10 +1,18 @@
 spring:
+  config:
+    import: "classpath:key.yml"
   elasticsearch:
     rest:
-      uris: http://3.39.169.45:9200
-      username: elastic
-      password: elastic
+      uris: ${instance}
+      username: ${instanceUN}
+      password: ${instancePW}
   data:
     elasticsearch:
       repositories:
         enabled: false
+
+
+
+
+
+
