@@ -10,9 +10,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 @Service
 public class ProductService{
@@ -25,9 +24,9 @@ public class ProductService{
         this.modelMapper = modelMapper;
     }
 
-    public ProductDTO findProductByProductId(long productId) {
+    public ProductDTO findProductByProductId(String productId) {
 
-        Product product = productRepository.findById(productId).get();
+        Product product = productRepository.findById(productId);
         ProductDTO productDTO = modelMapper.map(product, ProductDTO.class);
 
         return productDTO;
@@ -40,10 +39,40 @@ public class ProductService{
         int index = cri.getPageNum() -1;
         int count = cri.getAmount();
 
-        Pageable paging = PageRequest.of(index, count, Sort.by("id").descending());
-        Page<Product> result = productRepository.findByNameContainingIgnoreCase(search,paging);
+        Pageable paging = PageRequest.of(index, count, Sort.by("id.keyword").descending());
+        Page<Product> result = productRepository.findByKorNameContainingIgnoreCase(search,paging);
 
         Page<ProductDTO> productDTOList = result.map(product -> modelMapper.map(product, ProductDTO.class));
         return productDTOList;
+    }
+
+    public List<Product> findAllProducts(Sort sort) {
+        List<Product> productList = (List)productRepository.findAll(sort);
+
+        return productList;
+    }
+
+    public List<ProductDTO> searchProducts(String search,Sort sort) {
+        if(isKorean(search)){
+            List<Product> productList = productRepository.findByKorNameContaining(search,sort);
+            List<ProductDTO> productDTOList =  productList.stream()
+                    .map(product -> modelMapper.map(product, ProductDTO.class)).toList();
+
+
+            return productDTOList;
+
+        }else{
+            List<Product> productList = productRepository.findByEngNameContaining(search,sort);
+            List<ProductDTO> productDTOList = productList.stream()
+                    .map(product -> modelMapper.map(product, ProductDTO.class)).toList();
+
+
+            return productDTOList;
+        }
+
+    }
+
+    private boolean isKorean(String search) {
+        return search.codePoints().anyMatch(ch -> (ch >= 0x1100 && ch <= 0x11FF) || (ch >= 0x3130 && ch <= 0x318F) || (ch >= 0xAC00 && ch <= 0xD7A3));
     }
 }

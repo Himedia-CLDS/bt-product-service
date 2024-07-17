@@ -1,50 +1,45 @@
 package com.clds.bottletalk.product.model;
 
-import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
-@Entity
-@Getter
-@ToString
-@Builder //setter 대신 엔티티사용
-@Table(name="product")
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Document(indexName = "products")
 public class Product {
 
     @Id
-    @Column(name ="product_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name ="product_name")
-    private String name;
-
-    @Column(name ="product_img")
+    @Field(type = FieldType.Keyword)
+    private String id;
+    private long product_id;
+    @Field(name = "kor_name", type = FieldType.Text)
+    private String korName;
+    @Field(name = "eng_name", type = FieldType.Text)
+    private String engName;
     private String img;
-
-    @Column(name ="product_price")
-    private int price;
-
-    @Column(name ="product_country")
+    private double price;
+    private String alcohol;
     private String country;
-
-    @Column(name ="product_description")
+    private String capacity;
     private String description;
+    private String category;
+    private TastingNotes tasting_notes;
 
-    protected Product() {
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class TastingNotes {
+        private String aroma;
+        private String taste;
+        private String finish;
     }
-
-    public Product(Long id, String name, String img, int price, String country, String description) {
-        this.id = id;
-        this.name = name;
-        this.img = img;
-        this.price = price;
-        this.country = country;
-        this.description = description;
-    }
-
-
-
-
 }

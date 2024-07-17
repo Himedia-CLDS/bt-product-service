@@ -1,15 +1,10 @@
 spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: ${MYSQL_DATABASE}
-    username: ${MYSQL_USER}
-    password: ${MYSQL_PASSWORD}
-
-  jpa:
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        show_sql: true
-        format_sql: true
-        dialect: org.hibernate.dialect.MySQLDialect
+  elasticsearch:
+    rest:
+      uris: http://3.39.169.45:9200
+      username: elastic
+      password: elastic
+  data:
+    elasticsearch:
+      repositories:
+        enabled: false

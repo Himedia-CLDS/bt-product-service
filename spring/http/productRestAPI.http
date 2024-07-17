@@ -1,5 +1,5 @@
 ### GET 상세조회
-GET http://localhost:8080/v1/api/products/2
+GET http://localhost:8080/v1/api/products/1000000152
 Content-Type: application/json
 Accept: application/json
 
@@ -12,6 +12,9 @@ Accept: application/json
 
 
 ###상품 이름 검색
-GET http://localhost:8080/v1/api/products?search=yama
+GET http://localhost:8080/v1/api/products/search?search=7월
 Content-Type: application/json
 Accept: */*
+
+
+
