@@ -1,5 +1,6 @@
 .idea/
 .vscode/
+spring/.gradle/
 spring/build/
 spring/.logs/
 .logs/
@@ -7,4 +8,3 @@ spring/.logs/
 .env
 .class
 /spring/src/main/resources/apiKeys.yml
-
