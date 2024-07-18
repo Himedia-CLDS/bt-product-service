@@ -8,4 +8,4 @@ spring/.log/
 .DS_Store
 .env
 .class
-/spring/src/main/resources/apiKeys.yml
+/spring/src/main/resources/api-keys.yml
