@@ -1,8 +1,8 @@
 package com.clds.bottletalk.product.service;
 
 import com.clds.bottletalk.common.Criteria;
-import com.clds.bottletalk.product.model.Product;
-import com.clds.bottletalk.product.model.ProductDTO;
+import com.clds.bottletalk.product.document.Product;
+import com.clds.bottletalk.product.document.ProductDTO;
 import com.clds.bottletalk.product.repository.ProductRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;

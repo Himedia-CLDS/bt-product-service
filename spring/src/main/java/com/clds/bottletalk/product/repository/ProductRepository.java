@@ -1,12 +1,13 @@
 package com.clds.bottletalk.product.repository;
 
 
-import com.clds.bottletalk.product.model.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 import org.springframework.stereotype.Repository;
+
+import com.clds.bottletalk.product.document.Product;
 
 import java.util.List;
 

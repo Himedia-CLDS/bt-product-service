@@ -4,9 +4,8 @@ package com.clds.bottletalk.product.controller;
 import com.clds.bottletalk.common.Criteria;
 import com.clds.bottletalk.common.PagingResponseDTO;
 import com.clds.bottletalk.common.ResponseDTO;
-
-import com.clds.bottletalk.product.model.Product;
-import com.clds.bottletalk.product.model.ProductDTO;
+import com.clds.bottletalk.product.document.Product;
+import com.clds.bottletalk.product.document.ProductDTO;
 import com.clds.bottletalk.product.service.ProductService;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
