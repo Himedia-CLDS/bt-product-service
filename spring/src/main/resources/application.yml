@@ -10,9 +10,3 @@ spring:
     elasticsearch:
       repositories:
         enabled: false
-
-
-
-
-
-

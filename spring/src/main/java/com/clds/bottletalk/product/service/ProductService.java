@@ -12,7 +12,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
-
 @Service
 public class ProductService{
 
@@ -30,10 +29,7 @@ public class ProductService{
         ProductDTO productDTO = modelMapper.map(product, ProductDTO.class);
 
         return productDTO;
-
     }
-
-
 
     public Page<ProductDTO> findProductListWithPaging(Criteria cri, String search) {
         int index = cri.getPageNum() -1;
@@ -53,11 +49,11 @@ public class ProductService{
     }
 
     public List<ProductDTO> searchProducts(String search,Sort sort) {
+
         if(isKorean(search)){
             List<Product> productList = productRepository.findByKorNameContaining(search,sort);
             List<ProductDTO> productDTOList =  productList.stream()
                     .map(product -> modelMapper.map(product, ProductDTO.class)).toList();
-
 
             return productDTOList;
 
@@ -66,10 +62,8 @@ public class ProductService{
             List<ProductDTO> productDTOList = productList.stream()
                     .map(product -> modelMapper.map(product, ProductDTO.class)).toList();
 
-
             return productDTOList;
         }
-
     }
 
     private boolean isKorean(String search) {

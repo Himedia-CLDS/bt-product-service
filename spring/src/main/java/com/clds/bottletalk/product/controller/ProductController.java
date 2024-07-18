@@ -1,6 +1,5 @@
 package com.clds.bottletalk.product.controller;
 
-
 import com.clds.bottletalk.common.Criteria;
 import com.clds.bottletalk.common.PagingResponseDTO;
 import com.clds.bottletalk.common.ResponseDTO;
@@ -36,7 +35,6 @@ public class ProductController {
         return productService.findAllProducts(sort);
     }
 
-
     @GetMapping("/{productId}")
     public ResponseEntity<ResponseDTO> getProduct(@PathVariable("productId") String productId) {
         ProductDTO productDTO = productService.findProductByProductId(productId);
@@ -49,7 +47,6 @@ public class ProductController {
         return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "조회성공", productDTO));
     }
 
-
 //    페이징 없는 전체조회 추후 사용 예정
 //    @GetMapping("/search")
 //    public  ResponseEntity<ResponseDTO> searchProducts(@RequestParam(name = "search", defaultValue = "") String search,
@@ -60,7 +57,6 @@ public class ProductController {
 
 //        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK,"조회성공",productDTOList));
 //    }
-
 
     @GetMapping("/search")
     public ResponseEntity<ResponseDTO> getProductListWithPaging(@RequestParam(name = "search") String search,

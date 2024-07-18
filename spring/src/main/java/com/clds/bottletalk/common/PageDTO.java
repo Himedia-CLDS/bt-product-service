@@ -8,6 +8,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class PageDTO {
+    
     private int pageStart;          // 페이지 시작 번호
     private int pageEnd;            // 페이지 끝 번호
     private boolean next, prev;     // 이전, 다음 버튼 존재 여부

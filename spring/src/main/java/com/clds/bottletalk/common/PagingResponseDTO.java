@@ -9,5 +9,4 @@ import lombok.ToString;
 @ToString
 public class PagingResponseDTO {
     private Object data;
-
 }

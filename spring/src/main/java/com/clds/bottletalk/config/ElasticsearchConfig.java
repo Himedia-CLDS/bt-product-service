@@ -21,8 +21,6 @@ public class ElasticsearchConfig extends AbstractElasticsearchConfiguration {
     @Value("${instancePW}")
     private String password;
 
-
-
     @Override
     @Bean
     public RestHighLevelClient elasticsearchClient() {
@@ -38,6 +36,4 @@ public class ElasticsearchConfig extends AbstractElasticsearchConfiguration {
     public ElasticsearchRestTemplate elasticsearchRestTemplate() {
         return new ElasticsearchRestTemplate(elasticsearchClient());
     }
-
-
 }

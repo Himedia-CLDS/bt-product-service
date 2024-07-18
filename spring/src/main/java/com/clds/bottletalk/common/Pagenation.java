@@ -24,5 +24,4 @@ public class Pagenation {
 
         return new PagingButton(currentPage, startPage, endPage);
     }
-
 }
