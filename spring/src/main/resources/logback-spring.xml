@@ -4,7 +4,6 @@
 
     <!-- Rolling File Appender -->
     <appender name="RollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>log/application.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!-- 로그 파일 패턴 -->
             <fileNamePattern>log/application-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
