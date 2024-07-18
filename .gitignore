@@ -3,6 +3,7 @@
 spring/.gradle/
 spring/build/
 spring/.logs/
+spring/.log/
 .logs/
 .DS_Store
 .env
