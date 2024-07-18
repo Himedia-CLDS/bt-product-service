@@ -6,4 +6,5 @@ spring/.logs/
 .DS_Store
 .env
 .class
+/spring/src/main/resources/apiKeys.yml
 
