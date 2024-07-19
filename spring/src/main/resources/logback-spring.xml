@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
+    <property name="LOG_TEMP" value="Log/" />
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
-
+    <!-- log-file-path 추가 -->
+    <property resource="log-file-path.yml" />
+    
     <!-- Rolling File Appender -->
     <appender name="RollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!-- 로그 파일 패턴 -->
-            <fileNamePattern>./log/application-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!-- 테스트 시 ${local-path}, 배포시 ${cd-path} -->
+            <fileNamePattern>${cd-path}</fileNamePattern>
             <!-- 파일 최대 크기 -->
             <maxFileSize>100KB</maxFileSize>
             <!-- 최대 보관할 기간 -->
