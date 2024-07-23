@@ -2,9 +2,8 @@
 .vscode/
 spring/.gradle/
 spring/build/
-spring/.logs/
-spring/.log/
-.logs/
+spring/Log/
+spring/logs/
 .DS_Store
 .env
 .class
