@@ -1,2 +1,2 @@
-cd-path: /home/ec2-user/prouct-api/product-logs/application-%d{yyyy-MM-dd}.%i.log
+cd-path: /home/ec2-user/product-logs/application-%d{yyyy-MM-dd}.%i.log
 local-path: logs/application-%d{yyyy-MM-dd}.%i.log
