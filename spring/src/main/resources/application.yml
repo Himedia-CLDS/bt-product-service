@@ -10,3 +10,11 @@ spring:
     elasticsearch:
       repositories:
         enabled: false
+
+
+
+
+springdoc:
+  packages-to-scan: com.clds.bottletalk
+  default-consumes-media-type: application/json;charset=UTF-8
+  default-produces-media-type: application/json;charset=UTF-8

@@ -20,4 +20,6 @@ public interface ProductRepository extends ElasticsearchRepository<Product, Stri
     Product findById(String productId);
     List<Product> findByKorNameContaining(String search, Sort sort);
     List<Product> findByEngNameContaining(String search, Sort sort);
+
+    Page<Product> findByEngNameContainingIgnoreCase(String search, Pageable paging);
 }

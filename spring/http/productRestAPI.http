@@ -11,9 +11,75 @@ Accept: application/json
 
 
 ###상품 이름 검색
-GET http://localhost:8080/v1/api/products/search?search=7월
+GET http://localhost:8080/v1/api/products/search?search=label
 Content-Type: application/json
 Accept: */*
 
 
 
+
+### 엘라스틱서치 api 가격평균
+GET http://3.39.169.45:9200/hooyoung-2024.07.19/_search
+Content-Type: application/json
+Authorization: Basic ZWxhc3RpYzplbGFzdGlj
+
+{
+  "size": 0,
+  "aggs": {
+    "average_price": {
+      "avg": {
+        "field": "price"
+      }
+    }
+  }
+}
+
+
+
+
+### 인기검색어 top5
+GET http://3.39.169.45:9200/hooyoung-2024.07.19/_search
+Content-Type: application/json
+Authorization: Basic ZWxhc3RpYzplbGFzdGlj
+
+{
+  "size": 0,
+  "aggs": {
+    "top_keywords": {
+      "terms": {
+        "field": "searchKeyword.keyword",
+        "size": 5
+      }
+    }
+  }
+}
+
+
+### 상세조회 top5 직접호출
+GET http://3.39.169.45:9200/hooyoung-2024.07.19/_search
+Content-Type: application/json
+Authorization: Basic ZWxhc3RpYzplbGFzdGlj
+
+{
+  "size": 0,
+  "aggs": {
+    "top_keywords": {
+      "terms": {
+        "field": "korName.keyword",
+        "size": 5
+      }
+    }
+  }
+}
+
+
+### GET 상세조회 간접호출
+GET http://localhost:8080/v1/api/products/top5Products
+Content-Type: application/json
+Accept: application/json
+
+
+### GET 상세조회 간접호출
+GET http://localhost:8080/v1/api/products/top5Keywords
+Content-Type: application/json
+Accept: application/json

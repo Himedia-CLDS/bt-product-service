@@ -11,9 +11,9 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -47,6 +47,7 @@ public class ProductController {
         return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "조회성공", productDTO));
     }
 
+
 //    페이징 없는 전체조회 추후 사용 예정
 //    @GetMapping("/search")
 //    public  ResponseEntity<ResponseDTO> searchProducts(@RequestParam(name = "search", defaultValue = "") String search,
@@ -57,6 +58,8 @@ public class ProductController {
 
 //        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK,"조회성공",productDTOList));
 //    }
+
+
 
     @GetMapping("/search")
     public ResponseEntity<ResponseDTO> getProductListWithPaging(@RequestParam(name = "search") String search,
@@ -77,4 +80,63 @@ public class ProductController {
         }
         return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "조회성공", pagingResponseDTO));
     }
+
+    @GetMapping("/top5Products")
+    public ResponseEntity<?> getTop5Products() {
+        // 엘라스틱서치 호출 로직
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Content-Type", "application/json");
+        headers.set("Authorization", "Basic ZWxhc3RpYzplbGFzdGlj");
+
+        String query = "{\"size\": 0, \"aggs\": {\"top_keywords\": {\"terms\": {\"field\": \"korName.keyword\",\"size\": 5}}}}";
+        HttpEntity<String> entity = new HttpEntity<>(query, headers);
+
+        ResponseEntity<String> response = restTemplate.exchange(
+                "http://3.39.169.45:9200/hooyoung-2024.07.19/_search",
+                HttpMethod.POST,
+                entity,
+                String.class
+        );
+
+        return ResponseEntity.ok(response.getBody());
+    }
+
+
+
+    @GetMapping("/top5Keywords")
+    public ResponseEntity<?> getTop5Keywords() {
+        // 엘라스틱서치 호출 로직
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Content-Type", "application/json");
+        headers.set("Authorization", "Basic ZWxhc3RpYzplbGFzdGlj");
+
+        String query = "{\"size\": 0, \"aggs\": {\"top_keywords\": {\"terms\": {\"field\": \"searchKeyword.keyword\",\"size\": 5}}}}";
+        HttpEntity<String> entity = new HttpEntity<>(query, headers);
+
+        ResponseEntity<String> response = restTemplate.exchange(
+                "http://3.39.169.45:9200/hooyoung-2024.07.19/_search",
+                HttpMethod.POST,
+                entity,
+                String.class
+        );
+
+        return ResponseEntity.ok(response.getBody());
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

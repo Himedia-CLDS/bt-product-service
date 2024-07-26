@@ -34,9 +34,20 @@ public class ProductService{
     public Page<ProductDTO> findProductListWithPaging(Criteria cri, String search) {
         int index = cri.getPageNum() -1;
         int count = cri.getAmount();
+        Page<Product> result;
+
 
         Pageable paging = PageRequest.of(index, count, Sort.by("id.keyword").descending());
-        Page<Product> result = productRepository.findByKorNameContainingIgnoreCase(search,paging);
+
+        if(isKorean(search)) {
+
+         result = productRepository.findByKorNameContainingIgnoreCase(search, paging);
+
+        }else{
+
+          result = productRepository.findByEngNameContainingIgnoreCase(search, paging);
+        }
+
 
         Page<ProductDTO> productDTOList = result.map(product -> modelMapper.map(product, ProductDTO.class));
         return productDTOList;
@@ -48,23 +59,24 @@ public class ProductService{
         return productList;
     }
 
-    public List<ProductDTO> searchProducts(String search,Sort sort) {
-
-        if(isKorean(search)){
-            List<Product> productList = productRepository.findByKorNameContaining(search,sort);
-            List<ProductDTO> productDTOList =  productList.stream()
-                    .map(product -> modelMapper.map(product, ProductDTO.class)).toList();
-
-            return productDTOList;
-
-        }else{
-            List<Product> productList = productRepository.findByEngNameContaining(search,sort);
-            List<ProductDTO> productDTOList = productList.stream()
-                    .map(product -> modelMapper.map(product, ProductDTO.class)).toList();
-
-            return productDTOList;
-        }
-    }
+//    public List<ProductDTO> searchProducts(String search,Sort sort) {
+//
+//        if(isKorean(search)){
+//            List<Product> productList = productRepository.findByKorNameContaining(search,sort);
+//            List<ProductDTO> productDTOList =  productList.stream()
+//                    .map(product -> modelMapper.map(product, ProductDTO.class)).toList();
+//
+//            return productDTOList;
+//
+//        }else{
+//            List<Product> productList = productRepository.findByEngNameContaining(search,sort);
+//            List<ProductDTO> productDTOList = productList.stream()
+//                    .map(product -> modelMapper.map(product, ProductDTO.class)).toList();
+//
+//            return productDTOList;
+//        }
+//    }
+    //페이징 없는 상품검색 입니다.
 
     private boolean isKorean(String search) {
         return search.codePoints().anyMatch(ch -> (ch >= 0x1100 && ch <= 0x11FF) || (ch >= 0x3130 && ch <= 0x318F) || (ch >= 0xAC00 && ch <= 0xD7A3));
