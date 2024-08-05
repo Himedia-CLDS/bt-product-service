@@ -46,10 +46,14 @@ dependencies {
 
     // spring data elasticsearch
     implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
-    implementation 'org.elasticsearch.client:elasticsearch-rest-high-level-client:7.6.2'
+    implementation 'org.elasticsearch.client:elasticsearch-rest-high-level-client:7.17.23'
     implementation 'org.springframework.data:spring-data-elasticsearch:4.0.0.RELEASE'
 
     // swagger
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
+
+
+    // cognito
+    implementation 'com.amazonaws:aws-java-sdk-cognitoidp:1.12.529'
 
 }

@@ -65,7 +65,7 @@ Authorization: Basic ZWxhc3RpYzplbGFzdGlj
   "aggs": {
     "top_keywords": {
       "terms": {
-        "field": "korName.keyword",
+        "field": "id.keyword",
         "size": 5
       }
     }
@@ -73,13 +73,29 @@ Authorization: Basic ZWxhc3RpYzplbGFzdGlj
 }
 
 
-### GET 상세조회 간접호출
+### GET 인기상품TOP5
 GET http://localhost:8080/v1/api/products/top5Products
 Content-Type: application/json
 Accept: application/json
 
 
-### GET 상세조회 간접호출
+### GET 인기검색어TOP5
 GET http://localhost:8080/v1/api/products/top5Keywords
 Content-Type: application/json
 Accept: application/json
+
+
+
+### 엘라스틱 서치 검색 api
+GET http://localhost:8080/v1/api/products?search=짐빔
+Content-Type: application/json
+Accept: application/json
+
+{
+  "userId": "84085d0c-80f1-7059-e846-ef5a6efc742a"
+}
+
+
+
+
+
