@@ -32,7 +32,7 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_DEFAULT_REGION: ap-northeast-2
       run: |
-        aws s3 cp s3://${{ secrets.AWS_S3_BUCKET }}/product-api/api-keys.yml spring/src/main/resources/api-keys.yml
+        aws s3 cp s3://${{ secrets.AWS_S3_NAME }}/product-api/api-keys.yml spring/src/main/resources/api-keys.yml
 
     - name: Build with Gradle
       run: ./gradlew build -x test
@@ -44,4 +44,4 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_DEFAULT_REGION : ap-northeast-2
       run: |
-        aws s3 cp spring/build/libs/spring-0.0.1-SNAPSHOT.jar s3://${{ secrets.AWS_S3_BUCKET }}/product-api/
+        aws s3 cp spring/build/libs/spring-0.0.1-SNAPSHOT.jar s3://${{ secrets.AWS_S3_NAME }}/product-api/
