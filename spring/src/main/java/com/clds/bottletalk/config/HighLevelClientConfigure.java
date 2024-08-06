@@ -16,19 +16,19 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class HighLevelClientConfigure {
 
-    @Value("${Elasticsearch.HOST}")
+    @Value("${elasticsearch.host}")
     private String HOST;
 
-    @Value("${Elasticsearch.PORT}")
+    @Value("${elasticsearch.port}")
     private int PORT;
 
-    @Value("${Elasticsearch.SCHEME}")
+    @Value("${elasticsearch.scheme}")
     private String SCHEME;
 
-    @Value("${Elasticsearch.USERNAME}")
+    @Value("${elasticsearch.username}")
     private String USERNAME;
 
-    @Value("${Elasticsearch.PASSWORD}")
+    @Value("${elasticsearch.password}")
     private String PASSWORD;
 
 
