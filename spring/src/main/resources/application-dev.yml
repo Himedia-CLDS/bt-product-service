@@ -1,0 +1,18 @@
+spring:
+  config:
+    activate:
+      on-profile: "dev"
+
+
+elasticsearch:
+  host: ${dev.host}
+  port: ${dev.port}
+  scheme: ${dev.scheme}
+  username: ${dev.username}
+  password: ENC(${dev.password})
+  index-for-top5: ${dev.index-for-top5}
+  index-for-products: ${dev.index-for-products}
+
+
+
+

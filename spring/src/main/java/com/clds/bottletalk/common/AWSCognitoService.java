@@ -23,7 +23,7 @@ public class AWSCognitoService {
 
     private final AWSCognitoIdentityProvider cognitoClient;
 
-    private static final ObjectMapper objectMapper = new ObjectMapper();
+    public static final ObjectMapper objectMapper = new ObjectMapper();
 
 
     public AWSCognitoService(AWSCognitoIdentityProvider cognitoClient) {

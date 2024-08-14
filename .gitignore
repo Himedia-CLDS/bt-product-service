@@ -7,4 +7,4 @@ logs/
 .DS_Store
 .env
 .class
-/spring/src/main/resources/api-keys.yml
+/spring/src/main/resources/secrets.yml

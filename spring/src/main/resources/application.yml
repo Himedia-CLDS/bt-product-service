@@ -1,28 +1,25 @@
 spring:
+  profiles:
+    active: "local"
   config:
-    import: "classpath:api-keys.yml"
-  elasticsearch:
-    rest:
-      uris: ${instance}
-      username: ${instanceUN}
-      password: ${instancePW}
-  data:
-    elasticsearch:
-      repositories:
-        enabled: false
+    import: "classpath:secrets.yml"
+
+aws:
+  access-key-cognito: ${aws-secret.access-key-cognito}
+  secret-key-cognito: ${aws-secret.secret-key-cognito}
+  cognito:
+    userPoolId: ${aws-secret.cognito.userPoolId}
+    region: ${aws-secret.cognito.region}
 
 
+resource:
+  origin: ${frontend.domain}
 
 
-springdoc:
-  packages-to-scan: com.clds.bottletalk
-  default-consumes-media-type: application/json;charset=UTF-8
-  default-produces-media-type: application/json;charset=UTF-8
+jasypt:
+  encryptor:
+    bean: "jasyptStringEncryptor"
+    key: ${secret.jasypt.encryptor.key}
 
-
-
-server:
-  servlet:
-    encoding:
-      charset: UTF-8
-      force: true
+redis:
+  baseUrl: ${secret.redis.baseUrl}

@@ -1,0 +1,17 @@
+spring:
+  config:
+    activate:
+      on-profile: "local"
+
+
+elasticsearch:
+  host: ${local.host}
+  port: ${local.port}
+  scheme: ${local.scheme}
+  username: ${local.username}
+  password: ${local.password}
+  index-for-top5: ${local.index-for-top5}
+  index-for-products: ${local.index-for-products}
+
+
+

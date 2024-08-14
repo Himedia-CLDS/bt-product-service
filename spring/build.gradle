@@ -23,6 +23,9 @@ repositories {
     mavenCentral()
 }
 
+test {
+    useJUnitPlatform()
+}
 
 
 dependencies {
@@ -32,7 +35,6 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    implementation 'org.modelmapper:modelmapper:3.1.1'
 
 
     // Logstash Logback Encoder
@@ -46,7 +48,7 @@ dependencies {
 
     // spring data elasticsearch
     implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
-    implementation 'org.elasticsearch.client:elasticsearch-rest-high-level-client:7.17.23'
+    implementation 'org.elasticsearch.client:elasticsearch-rest-high-level-client:7.8.1'
     implementation 'org.springframework.data:spring-data-elasticsearch:4.0.0.RELEASE'
 
     // swagger
@@ -55,5 +57,24 @@ dependencies {
 
     // cognito
     implementation 'com.amazonaws:aws-java-sdk-cognitoidp:1.12.529'
+
+
+    // Jasypt
+    implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.5'
+
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-redis
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis:3.2.2'
+
+    // https://mvnrepository.com/artifact/redis.clients/jedis
+    implementation 'redis.clients:jedis:5.1.0'
+
+    // webClient
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+    //맥북일경우 아래의 의존성 주입 필요
+    implementation 'io.netty:netty-resolver-dns-native-macos:4.1.79.Final:osx-aarch_64'
+
+
+
 
 }

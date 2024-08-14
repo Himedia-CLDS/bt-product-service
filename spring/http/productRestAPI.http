@@ -1,101 +1,46 @@
-### GET 상세조회
-GET http://localhost:8080/v1/api/products/1000000152
+### 인기상품TOP5
+POST http://localhost:8080/v1/api/products/top5Products
 Content-Type: application/json
 Accept: application/json
 
+84085d0c-80f1-7059-e846-ef5a6efc742a
 
-### GET 목록조회
-GET http://localhost:8080/v1/api/products
+
+
+
+### 인기검색어TOP5
+POST http://localhost:8080/v1/api/products/top5Keywords
 Content-Type: application/json
 Accept: application/json
 
-
-###상품 이름 검색
-GET http://localhost:8080/v1/api/products/search?search=label
-Content-Type: application/json
-Accept: */*
+84085d0c-80f1-7059-e846-ef5a6efc742a
 
 
-
-
-### 엘라스틱서치 api 가격평균
-GET http://3.39.169.45:9200/hooyoung-2024.07.19/_search
-Content-Type: application/json
-Authorization: Basic ZWxhc3RpYzplbGFzdGlj
-
-{
-  "size": 0,
-  "aggs": {
-    "average_price": {
-      "avg": {
-        "field": "price"
-      }
-    }
-  }
-}
-
-
-
-
-### 인기검색어 top5
-GET http://3.39.169.45:9200/hooyoung-2024.07.19/_search
-Content-Type: application/json
-Authorization: Basic ZWxhc3RpYzplbGFzdGlj
-
-{
-  "size": 0,
-  "aggs": {
-    "top_keywords": {
-      "terms": {
-        "field": "searchKeyword.keyword",
-        "size": 5
-      }
-    }
-  }
-}
-
-
-### 상세조회 top5 직접호출
-GET http://3.39.169.45:9200/hooyoung-2024.07.19/_search
-Content-Type: application/json
-Authorization: Basic ZWxhc3RpYzplbGFzdGlj
-
-{
-  "size": 0,
-  "aggs": {
-    "top_keywords": {
-      "terms": {
-        "field": "id.keyword",
-        "size": 5
-      }
-    }
-  }
-}
-
-
-### GET 인기상품TOP5
-GET http://localhost:8080/v1/api/products/top5Products
-Content-Type: application/json
-Accept: application/json
-
-
-### GET 인기검색어TOP5
-GET http://localhost:8080/v1/api/products/top5Keywords
-Content-Type: application/json
-Accept: application/json
 
 
 
 ### 엘라스틱 서치 검색 api
-GET http://localhost:8080/v1/api/products?search=짐빔
+POST http://localhost:8080/v1/api/products?search=발베니
 Content-Type: application/json
 Accept: application/json
 
-{
-  "userId": "84085d0c-80f1-7059-e846-ef5a6efc742a"
-}
+84085d0c-80f1-7059-e846-ef5a6efc742a
 
 
 
+
+### 목록조회
+POST http://localhost:8080/v1/api/products
+Content-Type: application/json
+Accept: application/json
+
+
+
+### 상세조회
+POST http://localhost:8080/v1/api/products/1000000409
+Content-Type: application/json
+Accept: application/json
+
+84085d0c-80f1-7059-e846-ef5a6efc742a
 
 
