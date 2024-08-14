@@ -1,5 +1,5 @@
 ### 인기상품TOP5
-POST http://localhost:8080/v1/api/products/top5Products
+GET http://localhost:8080/v1/api/products/top5Products
 Content-Type: application/json
 Accept: application/json
 
@@ -9,7 +9,7 @@ Accept: application/json
 
 
 ### 인기검색어TOP5
-POST http://localhost:8080/v1/api/products/top5Keywords
+GET http://localhost:8080/v1/api/products/top5Keywords
 Content-Type: application/json
 Accept: application/json
 
@@ -20,7 +20,7 @@ Accept: application/json
 
 
 ### 엘라스틱 서치 검색 api
-POST http://localhost:8080/v1/api/products?search=발베니
+GET http://localhost:8080/v1/api/products?search=발베니
 Content-Type: application/json
 Accept: application/json
 
@@ -30,14 +30,14 @@ Accept: application/json
 
 
 ### 목록조회
-POST http://localhost:8080/v1/api/products
+GET http://localhost:8080/v1/api/products
 Content-Type: application/json
 Accept: application/json
 
 
 
 ### 상세조회
-POST http://localhost:8080/v1/api/products/1000000409
+GET http://localhost:8080/v1/api/products/1000000409
 Content-Type: application/json
 Accept: application/json
 

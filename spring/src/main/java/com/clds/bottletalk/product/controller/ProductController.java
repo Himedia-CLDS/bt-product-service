@@ -23,7 +23,7 @@ public class ProductController {
 
 
 
-    @PostMapping("")
+    @GetMapping("")
     public ResponseEntity<?> getProducts(
             @RequestParam(required = false) String search,
             @RequestBody(required = false) String userId
@@ -44,7 +44,7 @@ public class ProductController {
 
 
 
-    @PostMapping("/top5Keywords")
+    @GetMapping("/top5Keywords")
     public ResponseEntity<?> getTop5Keywords(@RequestBody(required = false) String userId) throws IOException {
         if(userId != null && !userId.isEmpty()) {
             return productService.getTop5Keywords(userId);
@@ -58,7 +58,7 @@ public class ProductController {
 
 
 
-    @PostMapping("/top5Products")
+    @GetMapping("/top5Products")
     public ResponseEntity<?> getTop5Products(@RequestBody(required = false) String userId) throws IOException {
 
         if (userId != null && !userId.isEmpty()) {
@@ -71,7 +71,7 @@ public class ProductController {
 
     }
 
-    @PostMapping("{productId}")
+    @GetMapping("{productId}")
     public ResponseEntity<?> getProductById(@PathVariable String productId, @RequestBody(required = false) String userId) throws IOException {
         if (userId != null && !userId.isEmpty()) {
             return productService.getProduct(productId, userId);

@@ -54,13 +54,13 @@ output {
 
 5. api test
 
-   | 메서드  | URL                               | 설명             |
-   |------|-----------------------------------|----------------|
-   | POST | /v1/api/products                  | 전체 위스키정보를 조회   |
-   | POST | /v1/api/products/{id}             | 특정 위스키정보를 조회   |
-   | POST | /v1/api/products?search={keyword} | 키워드로 위스키목록을 조회 |
-   | POST | /v1/api/products/top5Keywords     | 인기검색어 TOP5 조회  |
-   | POST | /v1/api/products/top5Products     | 인기삼풍 TOP5 조회   |
+   | 메서드 | URL                               | 설명             |
+   |-----|-----------------------------------|----------------|
+   | GET | /v1/api/products                  | 전체 위스키정보를 조회   |
+   | GET | /v1/api/products/{id}             | 특정 위스키정보를 조회   |
+   | GET | /v1/api/products?search={keyword} | 키워드로 위스키목록을 조회 |
+   | GET | /v1/api/products/top5Keywords     | 인기검색어 TOP5 조회  |
+   | GET | /v1/api/products/top5Products     | 인기삼풍 TOP5 조회   |
 
 
 
