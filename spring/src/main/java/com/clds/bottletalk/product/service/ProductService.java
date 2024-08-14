@@ -130,17 +130,7 @@ public class ProductService {
 
     }
 
-     /*
-        우선 search  API를 사용할것이기 때문에 서치 리퀘스트를 생성한다.
-        top5검색어를 사용하기 위해 aggregation 이 필요하였고 top*keywords 라는 aggregation 을 생성하였다.
-        기준으로 사용할 필드는 searchKeyword 필드와 들어있는 값들 로 지정하였고,
-        5가지 검색어를 받기위하여 사이즈는 5 로 설정하였다.
-        이 응답 또한 받아온 응답에서 top.keywords 의 집계결과만 Terms 를 사용하여 필드의 고유값들을 그룹화 하였고,
-        Bucket은 Terms의 집계 결과로 생성된 그룹을 나타낸다, 각 bucket은 키값과 카운트를 포함한다.
-        따라서 bucket을 순회하면서  키값은 keyword 키의 밸류 로 지정하였고,
-        count 키의 밸류 또한 count를 가져와 입력해주었다.
-        그리고 가공된 데이터를 응답으로 보내주었다.
-     */
+
 
 
     public ResponseEntity<?> getTop5Keywords(String userId) throws IOException {
@@ -179,15 +169,7 @@ public class ProductService {
         return ResponseEntity.ok(topKeywords);
     }
 
-    /*
-       검색어가 아닌 인기상품이기 때문에 가져와야 할 것이 카운트와 상품 이름 뿐만 아니라 상품의 id 값이 필요하다 생각하였다.
-       따라서 생성하는 집계의 키 값을 id 로 지정하였고, 똑같이 5가지상품을 조회하게 사이즈를 지정한뒤
-       추가적으로 상품의 이름이 보여야 한다 생각했다. 하지만 검색어를 가져왔던 방법과 달리 추가 속성을 가져오기 위해선 서브집합을
-       만들어야하는 상황이었고 Terms 버킷 내에 top_hit 이라는 서브 집계를 추가하였다. 이 서브 집계는 korName 필드만 가져오도록 지정하였다.
-       이렇게 설정한 요청으로 응답을 받아온후 현재 버킷의 top_hit 서브 집계 결과를 가져오고 그중 첫번째 히트를  가져온다.
-       이후 키워드 맵에 하나씩 넣어주었다.
-       기준키로 지정한 id 와 count 를 재외한 나머지 속성이 필요한 경우는 이렇게 서브집계를 만들어 hit를 사용하여 가져올수 있을것이다.
-   */
+
     public ResponseEntity<?> getAllProducts() throws IOException {
         SearchRequest searchRequest = new SearchRequest(indexForProducts);
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
