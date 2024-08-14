@@ -6,7 +6,11 @@
 
 2. 서버에서 실행시 
 ```
-gradle bootRun --args='--spring.profiles.active=dev' 으로 실행 필요합니다.
+gradle bootRun --args='--spring.profiles.active=dev' 
+혹은
+
+java -jar your-application.jar --spring.profiles.active=dev 
+으로 실행
 ```
 3인스턴스에 logstash 설치후 
 logstash.conf 확인 필요
