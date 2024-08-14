@@ -33,6 +33,51 @@ jobs:
         AWS_DEFAULT_REGION: ap-northeast-2
       run: |
         aws s3 cp s3://${{ secrets.AWS_S3_NAME }}/product-api/api-keys.yml spring/src/main/resources/api-keys.yml
+        
+
+    - name: Create secrets.yml
+      run: |
+        echo "dev:" > src/main/resources/secrets.yml
+        echo "  host: ${{ secrets.DEV_HOST }}" >> src/main/resources/secrets.yml
+        echo "  port: ${{ secrets.DEV_PORT }}" >> src/main/resources/secrets.yml
+        echo "  scheme: ${{ secrets.DEV_SCHEME }}" >> src/main/resources/secrets.yml
+        echo "  username: ${{ secrets.DEV_USERNAME }}" >> src/main/resources/secrets.yml
+        echo "  password: ${{ secrets.DEV_PASSWORD }}" >> src/main/resources/secrets.yml
+        echo "  index-for-top5: ${{ secrets.DEV_INDEX_FOR_TOP5 }}" >> src/main/resources/secrets.yml
+        echo "  index-for-products: ${{ secrets.DEV_INDEX_FOR_PRODUCTS }}" >> src/main/resources/secrets.yml
+
+        echo "" >> src/main/resources/secrets.yml
+        echo "local:" >> src/main/resources/secrets.yml
+        echo "  host: ${{ secrets.LOCAL_HOST }}" >> src/main/resources/secrets.yml
+        echo "  port: ${{ secrets.LOCAL_PORT }}" >> src/main/resources/secrets.yml
+        echo "  scheme: ${{ secrets.LOCAL_SCHEME }}" >> src/main/resources/secrets.yml
+        echo "  username: ${{ secrets.LOCAL_USERNAME }}" >> src/main/resources/secrets.yml
+        echo "  password: ${{ secrets.LOCAL_PASSWORD }}" >> src/main/resources/secrets.yml
+        echo "  index-for-top5: ${{ secrets.LOCAL_INDEX_FOR_TOP5 }}" >> src/main/resources/secrets.yml
+        echo "  index-for-products: ${{ secrets.LOCAL_INDEX_FOR_PRODUCTS }}" >> src/main/resources/secrets.yml
+
+        echo "" >> src/main/resources/secrets.yml
+        echo "aws-secret:" >> src/main/resources/secrets.yml
+        echo "  access-key-cognito: ${{ secrets.AWS_ACCESS_KEY_COGNITO }}" >> src/main/resources/secrets.yml
+        echo "  secret-key-cognito: ${{ secrets.AWS_SECRET_KEY_COGNITO }}" >> src/main/resources/secrets.yml
+        echo "  cognito:" >> src/main/resources/secrets.yml
+        echo "    userPoolId: ${{ secrets.AWS_COGNITO_USER_POOL_ID }}" >> src/main/resources/secrets.yml
+        echo "    region: ${{ secrets.AWS_COGNITO_REGION }}" >> src/main/resources/secrets.yml
+
+        echo "" >> src/main/resources/secrets.yml
+        echo "frontend:" >> src/main/resources/secrets.yml
+        echo "  domain: ${{ secrets.FRONTEND_DOMAIN }}" >> src/main/resources/secrets.yml
+
+        echo "" >> src/main/resources/secrets.yml
+        echo "secret:" >> src/main/resources/secrets.yml
+        echo "  jasypt:" >> src/main/resources/secrets.yml
+        echo "    encryptor:" >> src/main/resources/secrets.yml
+        echo "      key: ${{ secrets.JASYPT_ENCRYPTOR_KEY }}" >> src/main/resources/secrets.yml
+        echo "  redis:" >> src/main/resources/secrets.yml
+        echo "    baseUrl: ${{ secrets.REDIS_BASEURL }}" >> src/main/resources/secrets.yml
+    
+    
+    
 
     - name: Build with Gradle
       run: ./gradlew build -x test
