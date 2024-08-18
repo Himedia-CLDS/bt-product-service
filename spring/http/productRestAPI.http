@@ -2,8 +2,7 @@
 GET http://localhost:8080/v1/api/products/top5Products
 Content-Type: application/json
 Accept: application/json
-
-84085d0c-80f1-7059-e846-ef5a6efc742a
+X-User-ID: 84085d0c-80f1-7059-e846-ef5a6efc742a
 
 
 
@@ -12,8 +11,7 @@ Accept: application/json
 GET http://localhost:8080/v1/api/products/top5Keywords
 Content-Type: application/json
 Accept: application/json
-
-84085d0c-80f1-7059-e846-ef5a6efc742a
+X-User-ID: 84085d0c-80f1-7059-e846-ef5a6efc742a
 
 
 
@@ -23,8 +21,8 @@ Accept: application/json
 GET http://localhost:8080/v1/api/products?search=발베니
 Content-Type: application/json
 Accept: application/json
+X-User-ID: 84085d0c-80f1-7059-e846-ef5a6efc742a
 
-84085d0c-80f1-7059-e846-ef5a6efc742a
 
 
 
@@ -40,16 +38,14 @@ Accept: application/json
 GET http://localhost:8080/v1/api/products/1000000409
 Content-Type: application/json
 Accept: application/json
-
-84085d0c-80f1-7059-e846-ef5a6efc742a
+X-User-ID: 84085d0c-80f1-7059-e846-ef5a6efc742a
 
 
 ### 인스턴스 요청
 GET http://3.39.249.8:8080/v1/api/products?search=짐빔
 Content-Type: application/json
 Accept: application/json
-
-84085d0c-80f1-7059-e846-ef5a6efc742a
+X-User-ID: 84085d0c-80f1-7059-e846-ef5a6efc742a
 
 
 

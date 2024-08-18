@@ -26,7 +26,7 @@ public class ProductController {
     @GetMapping("")
     public ResponseEntity<?> getProducts(
             @RequestParam(required = false) String search,
-            @RequestBody(required = false) String userId
+            @RequestHeader(value = "X-User-ID", required = false) String userId
     ) throws IOException {
         if (search != null && !search.isEmpty()) {
 
@@ -45,7 +45,7 @@ public class ProductController {
 
 
     @GetMapping("/top5Keywords")
-    public ResponseEntity<?> getTop5Keywords(@RequestBody(required = false) String userId) throws IOException {
+    public ResponseEntity<?> getTop5Keywords(@RequestHeader(value = "X-User-ID", required = false) String userId) throws IOException {
         if(userId != null && !userId.isEmpty()) {
             return productService.getTop5Keywords(userId);
         }else{
@@ -59,7 +59,7 @@ public class ProductController {
 
 
     @GetMapping("/top5Products")
-    public ResponseEntity<?> getTop5Products(@RequestBody(required = false) String userId) throws IOException {
+    public ResponseEntity<?> getTop5Products(@RequestHeader(value = "X-User-ID", required = false) String userId) throws IOException {
 
         if (userId != null && !userId.isEmpty()) {
             return  productService.getTop5Products(userId);
@@ -72,7 +72,7 @@ public class ProductController {
     }
 
     @GetMapping("{productId}")
-    public ResponseEntity<?> getProductById(@PathVariable String productId, @RequestBody(required = false) String userId) throws IOException {
+    public ResponseEntity<?> getProductById(@PathVariable String productId, @RequestHeader(value = "X-User-ID", required = false) String userId) throws IOException {
         if (userId != null && !userId.isEmpty()) {
             return productService.getProduct(productId, userId);
         } else {
