@@ -76,4 +76,4 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_DEFAULT_REGION : ap-northeast-2
       run: |
-        aws s3 cp build/libs/spring-0.0.1-SNAPSHOT.jar s3://${{ secrets.AWS_S3_NAME }}/product-api/
+        aws s3 cp build/libs/bt-product-service-0.0.1-SNAPSHOT.jar s3://${{ secrets.AWS_S3_NAME }}/product-api/
