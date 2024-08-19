@@ -1,6 +1,5 @@
 package com.clds.bottletalk.product.service;
 
-
 import com.clds.bottletalk.common.AWSCognitoService;
 import com.clds.bottletalk.model.UserDTO;
 import com.clds.bottletalk.common.WebClientService;
@@ -21,9 +20,6 @@ import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,17 +32,13 @@ import static com.clds.bottletalk.common.AWSCognitoService.objectMapper;
 @Service
 public class ProductService {
 
-
     @Value("${elasticsearch.index-for-products}")
     private String indexForProducts;
-
     @Value("${elasticsearch.index-for-top5}")
     private String indexForTop5;
-
     private final AWSCognitoService awsCognitoService;
     private final RestHighLevelClient client;
     private final WebClientService webClientService;
-
 
     public ProductService(RestHighLevelClient client, AWSCognitoService awsCognitoService,WebClientService webClientService ) {
         this.awsCognitoService = awsCognitoService;
@@ -60,7 +52,6 @@ public class ProductService {
         GetResponse getResponse = client.get(getRequest, RequestOptions.DEFAULT);
         Map<String, Object> map = getResponse.getSourceAsMap();
         if (userId != null) {
-
             if (!webClientService.hasKey(userId)) {
                 Map<String, String> userInfo = awsCognitoService.getUserInfoFromCognito(userId);
                 String gender = awsCognitoService.parseGender(userInfo.get("gender"));
@@ -72,9 +63,7 @@ public class ProductService {
                 UserDTO userDTO = new UserDTO(userId,gender,birthYear);
                 System.out.println(userDTO);
                 webClientService.setKey(userDTO);
-
             } else {
-
                 UserDTO userInfo = webClientService.getKey(userId);
                 map.put("gender", userInfo.getGender());
                 map.put("birthYear", userInfo.getBirthYear());
@@ -89,12 +78,10 @@ public class ProductService {
     public ResponseEntity<?> getTop5Products(String userId) throws IOException {
         SearchRequest searchRequest = new SearchRequest(indexForTop5);
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-
         if (userId != null) {
             if (webClientService.hasKey(userId)) {
                 UserDTO userInfo = webClientService.getKey(userId);
                 searchSourceBuilder.query(QueryBuilders.termQuery("gender", userInfo.getGender()));
-
             } else {
                 Map<String, String> userInfo = awsCognitoService.getUserInfoFromCognito(userId);
                 String gender = awsCognitoService.parseGender(userInfo.get("gender"));
@@ -103,7 +90,6 @@ public class ProductService {
                 searchSourceBuilder.query(QueryBuilders.termQuery("gender", gender));
             }
         }
-
         searchSourceBuilder.aggregation(AggregationBuilders.terms("top_products")
                 .field("product_id.keyword")
                 .size(5)
@@ -113,7 +99,6 @@ public class ProductService {
                 ));
         searchRequest.source(searchSourceBuilder);
         SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
-
         List<Map<String, Object>> top5Products = new ArrayList<>();
         Terms terms = searchResponse.getAggregations().get("top_products");
         for (Terms.Bucket bucket : terms.getBuckets()) {
@@ -125,24 +110,17 @@ public class ProductService {
             keywordMap.put("kor_name", hit.getSourceAsMap().get("kor_name"));
             top5Products.add(keywordMap);
         }
-
         return ResponseEntity.ok(top5Products);
-
     }
 
 
-
-
     public ResponseEntity<?> getTop5Keywords(String userId) throws IOException {
-
         SearchRequest searchRequest = new SearchRequest(indexForTop5);
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-
         if (userId != null) {
             if (webClientService.hasKey(userId)) {
                 UserDTO userInfo = webClientService.getKey(userId);
                 searchSourceBuilder.query(QueryBuilders.termQuery("gender", userInfo.getGender()));
-
             } else {
                 Map<String, String> userInfo = awsCognitoService.getUserInfoFromCognito(userId);
                 String gender = awsCognitoService.parseGender(userInfo.get("gender"));
@@ -151,7 +129,6 @@ public class ProductService {
                 searchSourceBuilder.query(QueryBuilders.termQuery("gender", gender));
             }
         }
-
         searchSourceBuilder.aggregation(AggregationBuilders.terms("top_keywords")
                 .field("searchKeyword.keyword")
                 .size(5));
@@ -159,7 +136,6 @@ public class ProductService {
         SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
         List<Map<String, Object>> topKeywords = new ArrayList<>();
         Terms terms = searchResponse.getAggregations().get("top_keywords");
-
         for (Terms.Bucket bucket : terms.getBuckets()) {
             Map<String, Object> keywordMap = new HashMap<>();
             keywordMap.put("keyword", bucket.getKeyAsString());
@@ -177,7 +153,6 @@ public class ProductService {
         searchSourceBuilder.size(500);
         searchRequest.source(searchSourceBuilder);
         SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
-
         List<Map<String, Object>> results = new ArrayList<>();
         for (SearchHit hit : searchResponse.getHits()) {
             results.add(hit.getSourceAsMap());
@@ -195,18 +170,15 @@ public class ProductService {
                 .should(korWildcardQuery)
                 .should(engWildcardQuery);
         searchSourceBuilder.query(boolQuery);
-
         searchRequest.source(searchSourceBuilder);
         SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
         if (userId != null) {
             logUserSearch(userId, search, searchResponse);
         }
-
         List<Map<String, Object>> results = new ArrayList<>();
         for (SearchHit hit : searchResponse.getHits()) {
             results.add(hit.getSourceAsMap());
         }
-
         return ResponseEntity.ok(results);
     }
 
@@ -232,17 +204,7 @@ public class ProductService {
                 );
                 log.info(searchJson);
             }
-
         }
     }
-
-
-
-
-
-
-
-
-
 
 }

@@ -20,11 +20,8 @@ public class AWSCognitoService {
 
     @Value("${aws.cognito.userPoolId}")
     private String userPoolId;
-
     private final AWSCognitoIdentityProvider cognitoClient;
-
     public static final ObjectMapper objectMapper = new ObjectMapper();
-
 
     public AWSCognitoService(AWSCognitoIdentityProvider cognitoClient) {
         this.cognitoClient = cognitoClient;
@@ -32,16 +29,12 @@ public class AWSCognitoService {
 
     public Map<String, String> getUserInfoFromCognito(String userId) {
         AdminGetUserRequest userRequest = new AdminGetUserRequest().withUserPoolId(userPoolId).withUsername(userId);
-
         AdminGetUserResult userResult = cognitoClient.adminGetUser(userRequest);
-
         Map<String, String> userAttributes = new HashMap<>();
         for (AttributeType attribute : userResult.getUserAttributes()) {
             userAttributes.put(attribute.getName(), attribute.getValue());
         }
-
         return userAttributes;
-
     }
 
 

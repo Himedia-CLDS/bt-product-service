@@ -6,7 +6,6 @@ public class UserDTO {
     private String gender;
     private String birthYear;
 
-
     public UserDTO() {
     }
 

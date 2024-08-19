@@ -31,9 +31,6 @@ public class HighLevelClientConfigure {
     @Value("${elasticsearch.password}")
     private String PASSWORD;
 
-
-
-
     @Bean(destroyMethod = "close")
     public RestHighLevelClient restHighLevelClient() {
         final CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
