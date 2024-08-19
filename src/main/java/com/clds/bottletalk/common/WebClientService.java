@@ -15,7 +15,7 @@ public class WebClientService {
 
     public Boolean hasKey(String userId) {
         String response = webClient.get()
-                .uri("/redis/hasKey?userId=" + userId)
+                .uri("8080/redis/hasKey?userId=" + userId)
                 .retrieve()
                 .bodyToMono(String.class)
                 .block();
@@ -25,7 +25,7 @@ public class WebClientService {
     public Boolean setKey(UserDTO userDTO) {
         System.out.println("setKey 요청 보내기 직전 : " + userDTO.toString());
         String response = webClient.post()
-                .uri("/redis/setKey")
+                .uri("8080/redis/setKey")
                 .bodyValue(userDTO)
                 .retrieve()
                 .bodyToMono(String.class)
@@ -35,7 +35,7 @@ public class WebClientService {
 
     public UserDTO getKey(String userId) {
         return webClient.get()
-                .uri("/redis/getKey?userId=" + userId)
+                .uri("8080/redis/getKey?userId=" + userId)
                 .retrieve()
                 .bodyToMono(UserDTO.class)
                 .block();
