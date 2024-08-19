@@ -67,13 +67,8 @@ jobs:
         echo "  redis:" >> src/main/resources/secrets.yml
         echo "    baseUrl: ${{ secrets.REDIS_BASEURL }}" >> src/main/resources/secrets.yml
     
-    
-    
-    
-
     - name: Build with Gradle
       run: ./gradlew build -x test
-      working-directory: spring
 
     - name: Upload to S3
       env:
