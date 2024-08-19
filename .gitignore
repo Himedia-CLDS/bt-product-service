@@ -4,6 +4,7 @@
 build/
 Log/
 logs/
+bin/
 .DS_Store
 .env
 .class
