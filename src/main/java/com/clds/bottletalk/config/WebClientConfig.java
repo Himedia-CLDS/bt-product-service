@@ -10,11 +10,14 @@ public class WebClientConfig {
 
     @Value("${redis.baseUrl}")
     String baseUrl;
+    @Value("${redis.port}")
+    String port;
 
     @Bean
     public WebClient webClient() {
+        String redisBaseUrl = baseUrl+":"+port;
         return WebClient.builder()
-                .baseUrl(baseUrl)
+                .baseUrl(redisBaseUrl)
                 .build();
     }
 }
