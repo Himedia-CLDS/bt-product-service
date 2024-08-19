@@ -26,15 +26,6 @@ jobs:
         key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
         restore-keys: ${{ runner.os }}-gradle
 
-    - name: Download api-keys.yml from S3
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_DEFAULT_REGION: ap-northeast-2
-      run: |
-        aws s3 cp s3://${{ secrets.AWS_S3_NAME }}/product-api/api-keys.yml spring/src/main/resources/api-keys.yml
-        
-
     - name: Create secrets.yml
       run: |
         echo "dev:" > spring/src/main/resources/secrets.yml
