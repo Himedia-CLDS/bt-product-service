@@ -1,10 +1,10 @@
 .idea/
 .vscode/
-spring/.gradle/
-spring/build/
+.gradle/
+build/
 Log/
 logs/
 .DS_Store
 .env
 .class
-/spring/src/main/resources/secrets.yml
+src/main/resources/secrets.yml
