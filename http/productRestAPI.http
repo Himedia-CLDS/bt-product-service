@@ -8,7 +8,7 @@ X-User-ID: 84085d0c-80f1-7059-e846-ef5a6efc742a
 GET http://localhost:8080/v1/api/products/top5Keywords
 Content-Type: application/json
 Accept: application/json
-X-User-ID: 84085d0c-80f1-7059-e846-ef5a6efc742a
+
 
 ### 엘라스틱 서치 검색 api
 GET http://localhost:8080/v1/api/products?search=발베니
@@ -28,14 +28,25 @@ Accept: application/json
 X-User-ID: 84085d0c-80f1-7059-e846-ef5a6efc742a
 
 ### 인스턴스 요청
-GET http://3.39.249.8:8080/v1/api/products?search=짐빔
+GET http://3.39.249.8:8080/v1/api/products?search=레드
 Content-Type: application/json
 Accept: application/json
 X-User-ID: 84085d0c-80f1-7059-e846-ef5a6efc742a
 
 ### 인스턴스 요청 상세조회
-GET http://3.39.249.8:8080/v1/api/products/1000000409
+GET http://3.39.249.8:8080/v1/api/products/1000001720
 Content-Type: application/json
 Accept: application/json
 X-User-ID: 84085d0c-80f1-7059-e846-ef5a6efc742a
 
+
+### 인스턴스 요청
+GET http://13.124.135.37:8080/v1/api/products?search=레드
+Content-Type: application/json
+Accept: application/json
+X-User-ID: 84085d0c-80f1-7059-e846-ef5a6efc742a
+
+### 인스턴스 요청
+GET http://13.124.135.37:8080/v1/api/products
+Content-Type: application/json
+Accept: application/json
